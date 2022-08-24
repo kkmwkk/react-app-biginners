@@ -68,7 +68,7 @@ where INSTR(ename, 'D', length(ename)) = length(ename);
 
 select ename 이름, sal 월급, hiredate 입사일
 from emp
-where INSTR(ename, 'D', -1, 1) = -1;
+where INSTR(ename, 'D', -1, 1) = length(ename);
 
 
 select ename 이름, sal 월급, hiredate 입사일
@@ -79,6 +79,21 @@ where SUBSTR(ename, length(ename), 1) = 'D';
 select ename 이름, sal 월급, hiredate 입사일
 from emp
 where SUBSTR(ename, -1, 1) = 'D';
+
+
+--emp 테이블의 사원들의 현재 까지의 근무 일자를 구하시오
+
+select ename 이름, concat(round((sysdate - hiredate),0),'일') 일자 , concat(round((sysdate-hiredate)/365, 1),'년') 년도
+from emp;
+
+select ename 이름, round(MONTHS_BETWEEN(sysdate, hiredate),0) 근무개월수
+from emp;
+
+
+-- 여러분이 지금까지 먹은 밥그릇 수를 헤아리시오
+
+select To_NUMBER(sysdate - TO_DATE('1998/04/29')) * 3
+from dual;
 
 
 
