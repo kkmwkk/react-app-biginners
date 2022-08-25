@@ -40,3 +40,34 @@ from dual;
 
 -- 정답
 select sysdate, TRUNC(sysdate - to_date('2021/12/20')) from dual;
+
+
+-- emp 테이블에서 급여를 W88,950 처럼 나오게 하라
+select ename 이름, trim(to_char(sal, 'L99,999'))급여
+from emp;
+
+
+-- 커미션을 받지 않은 사원의 월급을 1500원 인상해 지급하고 COMM 컬럼에 인상된 금액을 표시하시오. 단 숫자 0은 받는걸로 취급함
+select ename, sal, comm, nvl(comm, to_char(sal + 1500)) "인상된 금액", nvl(comm, '1500') 커미션
+from emp
+where comm is NULL
+ORDER BY SAL;
+
+-- 09월에 입사한 사원의 comm을 2000추가하여 월급을 산출하시오 sal + comm 값이 나오도록 쿼리를 만드시오.
+select ename, hiredate, nvl(comm, 0) + 2000, (sal + nvl(comm, 0) + 2000) 월급
+from emp
+where to_char(hiredate, 'MM') = '09';
+
+-- emp 테이블에서 상관이 없는 사원만 출력하되  MGL 컬럼에 NULL 대신 CEO 라고 출력되도록 하시오
+select ename 이름, decode(mgr, null, 'CEO') 직책
+from emp
+where MGR is NULL;
+
+-- to_char(null) = 0 처리 되는가 ? nvl(0, 'CEO') 하면 답이 나오긴함.
+select ename 이름, nvl(to_char(mgr,'999'), 'CEO')mgr
+from emp
+where MGR is NULL;
+
+-- 직급에 따라 급여를 인상합니다 직급이 ANAIYST 인 사원은 5% 인상 SALESMAN 은 10% 인상 MANAGER 은 15% CLERK 20 % 인상한 금액을 출력하시오
+select ename 이름, sal 월급, job 직급, decode(job, 'ANAIYST', sal * 1.05, 'SALESMAN', sal * 1.1, 'MANAGER', sal * 1.15, 'CLERK', sal * 1.2, sal) 인상된월급
+from emp;
