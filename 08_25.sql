@@ -97,5 +97,22 @@ ELSE sal
 END as dsal
 from emp;
 
+-- 이름의 길이에 따라 급여를 인상합니다. 이름의 길이가 4인 사람은 10% 향상 이름의 길이가 5인 사람은 20%향상 이름의 길이가 6인 사람은 30% 향상. case문으로 해결해라
+select ename 이름, length(ename) 이름길이, sal 월급, CASE
+WHEN length(ename) = 4 THEN sal * 1.1
+WHEN length(ename) = 5 THEN sal * 1.2
+WHEN length(ename) = 6 THEN sal * 1.3
+ELSE sal
+END as dsal
+from emp;
+
+-- 부서번호가 10이면 'NEW YORK' 20이면 'DALLAS' 그 외는 'UNKNOWN' 으로 출력
+select ename 이름, deptno,job, CASE
+WHEN deptno = 10 THEN 'NEW YORK'
+WHEN deptno = 20 THEN 'DALLAS'
+ELSE 'UNKNOWN'
+END as 근무지
+from emp
+where job = 'MANAGER';
 
 
