@@ -95,6 +95,12 @@ from emp;
 select To_NUMBER(sysdate - TO_DATE('1998/04/29')) * 3
 from dual;
 
+-- 사원 번호가 홀수인 사원들을 출력 하시오 
+
+select *
+from emp
+where MOD(empno, 2) = 1;
+
 
 
 
