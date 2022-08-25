@@ -71,3 +71,6 @@ where MGR is NULL;
 -- 직급에 따라 급여를 인상합니다 직급이 ANAIYST 인 사원은 5% 인상 SALESMAN 은 10% 인상 MANAGER 은 15% CLERK 20 % 인상한 금액을 출력하시오
 select ename 이름, sal 월급, job 직급, decode(job, 'ANAIYST', sal * 1.05, 'SALESMAN', sal * 1.1, 'MANAGER', sal * 1.15, 'CLERK', sal * 1.2, sal) 인상된월급
 from emp;
+
+select ename 이름, length(ename) 길이, sal 월급, job 지급, decode(length(ename), 4, sal * 1.1, 5, sal * 1.2, 6, sal * 1.3, sal) 인상된월급
+from emp;
