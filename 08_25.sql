@@ -72,5 +72,30 @@ where MGR is NULL;
 select ename 이름, sal 월급, job 직급, decode(job, 'ANAIYST', sal * 1.05, 'SALESMAN', sal * 1.1, 'MANAGER', sal * 1.15, 'CLERK', sal * 1.2, sal) 인상된월급
 from emp;
 
+-- 이름의 길이에 따라 급여를 인상합니다. 이름의 길이가 4인 사람은 10% 향상 이름의 길이가 5인 사람은 20%향상 이름의 길이가 6인 사람은 30% 향상.
 select ename 이름, length(ename) 길이, sal 월급, job 지급, decode(length(ename), 4, sal * 1.1, 5, sal * 1.2, 6, sal * 1.3, sal) 인상된월급
 from emp;
+
+-- 부서 번호에 해당하는 부서명을 구하는 쿼리문을 작성하시오
+
+select ename, deptno, CASE 
+WHEN deptno = 10 THEN 'ACCOUNTING'
+WHEN deptno = 20 THEN 'RESEARCH'
+WHEN deptno = 30 THEN 'SALES'
+WHEN deptno = 40 THEN 'OPERATIONS'
+ELSE 'default'
+END as dname
+from emp;
+
+-- 직급에 따라 급여를 인상합니다 직급이 ANAIYST 인 사원은 5% 인상 SALESMAN 은 10% 인상 MANAGER 은 15% CLERK 20 % 인상한 금액을 출력하시오 case문으로 해결하라.
+select ename 이름, sal 월급, job 직급, CASE
+WHEN job = 'ANAIYST' THEN sal * 1.05
+WHEN job = 'SALESMAN' THEN sal * 1.1
+WHEN job = 'MANAGER' THEN sal * 1.15
+WHEN job = 'CLERK' THEN sal * 1.20
+ELSE sal
+END as dsal
+from emp;
+
+
+
