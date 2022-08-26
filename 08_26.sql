@@ -102,5 +102,65 @@ HAVING sum(sal) >= 1000
 ORDER BY sum(sal);
 
 
+-- 'DALLAS'에서 근무하는 사원의 이름과 직급과 월급과 근무지를 출력하는 쿼리문을 작성하시오.
+
+select e.ename, e.job, e.sal, d.loc
+from emp e, dept d
+WHERE e.deptno = d.deptno AND d.loc = 'DALLAS';
+
+
+
+-- 'RESEARCH' 부서에서 근무하는 사원들의 이름, 입사일과 월급과, 근무지, 근무부서명을 출력하는 쿼리문을 작성하시오
+
+select e.ename, e.hiredate, e.sal, d.loc, d.dname
+from emp e, dept d
+where e.deptno = d.deptno AND d.dname = 'RESEARCH'
+ORDER BY hiredate;
+
+
+
+-- 직급이 'MANAGER' 인 사원의 이름, 월급, 근무지를 출력하는 쿼리문을 작성하시오
+
+select e.ename, e.job, e.sal, d.loc
+from emp e, dept d
+where e.deptno = d.deptno AND e.job = 'MANAGER'
+ORDER BY sal;
+
+-- 'ACCOUNTING' 부서 소속 사원들의 이름과 입사일과 근무지를 출력하시오
+select e.ename, e.hiredate, d.loc
+from emp e, dept d
+where e.deptno = d.deptno AND d.dname = 'ACCOUNTING';
+
+select ename, sal, grade
+from emp, salgrade
+where sal BETWEEN losal AND hisal;
+
+-- 한 명의 사원 이름과 소속 부서명, 급여의 등급을 출력하는 쿼리문(사원테이블에는 부서 이름과 급여 등급은 없고, 부서 번호와 급여만있다.
+select e.ename, d.dname, s.grade
+from emp e, dept d, salgrade s
+where e.deptno = d.deptno and e.sal between s.losal and hisal;
+
+-- 각 사원의 급여가 몇 등급인지 살펴보는 쿼리문
+select e.ename, e.sal, s.grade
+from emp e, salgrade s
+where e.sal Between s.losal AND s.hisal;
+
+select e.ename, e.sal, s.grade
+from emp e, salgrade s
+where e.sal >= s.losal AND e.sal <= s.hisal;
+
+SELECT ename, job, sal, grade
+from emp join salgrade on sal between losal and hisal;
+
+
+SELECT E.ename, D.dname, s.grade
+FROM emp E, dept D, salgrade S
+WHERE E.deptno = d.deptno AND E.sal Between S.losal AND S.hisal;
+
+SELECT *
+from salgrade;
+
+
+
 
 
