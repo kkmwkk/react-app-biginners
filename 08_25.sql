@@ -115,4 +115,6 @@ END as 근무지
 from emp
 where job = 'MANAGER';
 
+-- 끝 
+
 
