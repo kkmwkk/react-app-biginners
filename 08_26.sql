@@ -157,8 +157,16 @@ SELECT E.ename, D.dname, s.grade
 FROM emp E, dept D, salgrade S
 WHERE E.deptno = d.deptno AND E.sal Between S.losal AND S.hisal;
 
-SELECT *
-from salgrade;
+select e.deptno, e.sal, avg(sal)
+from emp e, salgrade s
+where e.avg(sal) 
+group by e.deptno, e.sal;
+
+select deptno, avg(sal)
+from emp
+group by deptno;
+
+
 
 
 
