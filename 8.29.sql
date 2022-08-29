@@ -4,3 +4,15 @@
 
 SELECT *
 from emp;
+
+select * 
+from emp;
+
+select * 
+from emp;
+select * 
+from emp;
+select * 
+from emp;
+select * 
+from emp;
